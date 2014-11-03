@@ -1,0 +1,16 @@
+TouchScript/*
+!TouchScript/Examples.meta
+!TouchScript/Examples
+TouchScript/Examples/General*
+TouchScript/Examples/_misc*
+!TouchScript/Examples/Playmaker*
+!TouchScript/Examples/Playmaker/*
+!TouchScript/Modules*
+!TouchScript/Modules/*
+!PlaymakerUnity2D*
+!PlaymakerUnity2D/*
+
+# Playmaker
+Gizmos*
+iTween*
+Photon*
