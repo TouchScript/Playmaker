@@ -26,16 +26,19 @@ namespace TouchScript.Modules.Playmaker.Actions
         #region Output
 
         [UIHint(UIHint.Variable)]
+        public FsmObject Target;
+        
+        [UIHint(UIHint.Variable)]
         public FsmObject Collider;
+        
+        [UIHint(UIHint.Variable)]
+        public FsmObject Rigidbody;
 
         [UIHint(UIHint.Variable)]
         public FsmVector3 Normal;
 
         [UIHint(UIHint.Variable)]
         public FsmVector3 Point;
-
-        [UIHint(UIHint.Variable)]
-        public FsmObject RigidBody;
 
         #endregion
 
@@ -47,10 +50,11 @@ namespace TouchScript.Modules.Playmaker.Actions
             Gesture = null;
             Component = null;
 
+            Target = null;
             Collider = null;
+            Rigidbody = null;
             Normal = Vector3.zero;
             Point = Vector3.zero;
-            RigidBody = null;
         }
 
         public override void OnEnter()
@@ -62,15 +66,15 @@ namespace TouchScript.Modules.Playmaker.Actions
                 return;
             }
 
-            ITouchHit hit;
+            TouchHit hit;
             gesture.GetTargetHitResult(out hit);
-            var hit3d = hit as ITouchHit3D;
-            if (hit3d == null) return;
+            if (hit.Type != TouchHit.TouchHitType.Hit3D) return;
 
-            if (Collider != null) Collider.Value = hit3d.Collider;
-            if (RigidBody != null) RigidBody.Value = hit3d.Rigidbody;
-            if (Normal != null) Normal.Value = hit3d.Normal;
-            if (Point != null) Point.Value = hit3d.Point;
+            if (Target != null) Target.Value = hit.Transform;
+            if (Rigidbody != null) Rigidbody.Value = hit.RaycastHit.rigidbody;
+            if (Collider != null) Collider.Value = hit.RaycastHit.collider;
+            if (Normal != null) Normal.Value = hit.Normal;
+            if (Point != null) Point.Value = hit.Point;
 
             Finish();
         }

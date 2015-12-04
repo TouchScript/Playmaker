@@ -20,11 +20,15 @@ namespace TouchScript.Modules.Playmaker.Actions
         [HutongGames.PlayMaker.Tooltip("Optionally drag a component directly into this field (gesture name will be ignored).")]
         public Component Component;
 
+        #region Output
+
         [UIHint(UIHint.Variable)]
         public FsmVector2 ScreenPosition;
 
         [UIHint(UIHint.FsmEvent)]
         public FsmEvent SendEvent;
+        
+        #endregion
 
         protected TapGesture gesture;
 
