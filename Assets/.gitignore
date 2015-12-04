@@ -1,4 +1,6 @@
-TouchScript*
+TouchScript/*
+!TouchScript/Modules
+TouchScript/Modules/*
 !TouchScript/Modules/PlayMaker*
 
 Gizmos*
