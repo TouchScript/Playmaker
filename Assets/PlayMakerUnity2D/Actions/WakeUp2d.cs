@@ -27,9 +27,9 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			GameObject go = gameObject.OwnerOption == OwnerDefaultOption.UseOwner ? Owner : gameObject.GameObject.Value;
 			if (go == null) return;
-			if (go.rigidbody2D == null) return;
+			if (go.GetComponent<Rigidbody2D>() == null) return;
 			
-			go.rigidbody2D.WakeUp();
+			go.GetComponent<Rigidbody2D>().WakeUp();
 		}
 	}
 }

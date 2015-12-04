@@ -32,9 +32,9 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			GameObject go = Fsm.GetOwnerDefaultTarget(gameObject);
 			if (go == null) return;
-			if (go.rigidbody2D == null) return;
+			if (go.GetComponent<Rigidbody2D>() == null) return;
 			
-			go.rigidbody2D.mass = mass.Value;
+			go.GetComponent<Rigidbody2D>().mass = mass.Value;
 		}
 	}
 }
