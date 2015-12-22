@@ -12,6 +12,9 @@ namespace TouchScript.Modules.Playmaker.Actions
     [HutongGames.PlayMaker.Tooltip("Sends events when a gesture changes state.")]
     public class GestureStateChanged : FsmStateAction
     {
+
+        #region Input
+
         [HutongGames.PlayMaker.Tooltip("The GameObject that owns the Gesture.")]
         public FsmOwnerDefault GameObject;
 
@@ -23,9 +26,22 @@ namespace TouchScript.Modules.Playmaker.Actions
         public Component Component;
 
         public Gesture.GestureState TargetState = Gestures.Gesture.GestureState.Recognized;
+
+        #endregion
+
+        #region Output
+
         public FsmEvent SendEvent;
 
+        #endregion
+
+        #region Private variables
+
         private Gesture gesture;
+
+        #endregion
+
+        #region FSM methods
 
         public override void Reset()
         {
@@ -60,12 +76,18 @@ namespace TouchScript.Modules.Playmaker.Actions
             return null;
         }
 
+        #endregion
+
+        #region Private functions
+
         private void gestureStateChangedHandler(object sender, GestureStateChangeEventArgs e)
         {
             if (e.State != TargetState) return;
             if (SendEvent == null) return;
             Fsm.Event(SendEvent);
         }
+
+        #endregion
 
     }
 }

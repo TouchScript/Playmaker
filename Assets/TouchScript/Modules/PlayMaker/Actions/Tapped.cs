@@ -14,11 +14,15 @@ namespace TouchScript.Modules.Playmaker.Actions
     public class Tapped : FsmStateAction
     {
 
+        #region Input
+
         [HutongGames.PlayMaker.Tooltip("The GameObject that owns the Gesture.")]
         public FsmOwnerDefault GameObject;
 
         [HutongGames.PlayMaker.Tooltip("Optionally drag a component directly into this field (gesture name will be ignored).")]
         public Component Component;
+
+        #endregion
 
         #region Output
 
@@ -27,10 +31,16 @@ namespace TouchScript.Modules.Playmaker.Actions
 
         [UIHint(UIHint.FsmEvent)]
         public FsmEvent SendEvent;
-        
+
         #endregion
 
+        #region Private variables
+
         protected TapGesture gesture;
+
+        #endregion
+
+        #region FSM methods
 
         public override void Reset()
         {
@@ -58,12 +68,18 @@ namespace TouchScript.Modules.Playmaker.Actions
             gesture.Tapped -= gestureTappedHandler;
         }
 
+        #endregion
+
+        #region Private functions
+
         private void gestureTappedHandler(object sender, EventArgs e)
         {
             if (SendEvent == null) return;
             if (ScreenPosition != null) ScreenPosition.Value = gesture.ScreenPosition;
             Fsm.Event(SendEvent);
         }
+
+        #endregion
 
     }
 }

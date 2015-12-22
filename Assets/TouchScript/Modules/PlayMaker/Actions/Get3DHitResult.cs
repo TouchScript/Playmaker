@@ -13,6 +13,9 @@ namespace TouchScript.Modules.Playmaker.Actions
     [HutongGames.PlayMaker.Tooltip("Retrieves 3D hit details from a gesture.")]
     public class Get3DHitResult : FsmStateAction
     {
+
+        #region Input
+
         [HutongGames.PlayMaker.Tooltip("The GameObject that owns the Gesture.")]
         public FsmOwnerDefault GameObject;
 
@@ -22,6 +25,8 @@ namespace TouchScript.Modules.Playmaker.Actions
 
         [HutongGames.PlayMaker.Tooltip("Optionally drag a component directly into this field (gesture name will be ignored).")]
         public Component Component;
+
+        #endregion
 
         #region Output
 
@@ -42,7 +47,13 @@ namespace TouchScript.Modules.Playmaker.Actions
 
         #endregion
 
+        #region Private variables
+
         private Gesture gesture;
+
+        #endregion
+
+        #region FSM methods
 
         public override void Reset()
         {
@@ -84,6 +95,8 @@ namespace TouchScript.Modules.Playmaker.Actions
             if (GestureUtils.GetGesture<Gesture>(Fsm, GameObject, Gesture, Component, false) == null) return "Gesture is missing";
             return null;
         }
+
+        #endregion
 
     }
 }
